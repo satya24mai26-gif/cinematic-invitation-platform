@@ -12,6 +12,8 @@ import {
 import { useAuth }
 from '../context/AuthContext'
 
+import { API_URL } from '../config'
+
 
 function VerifyOTPPage() {
 
@@ -71,7 +73,7 @@ function VerifyOTPPage() {
           const meResponse =
             await fetch(
         
-              'http://localhost:5000/api/auth/me',
+              `${API_URL}/api/auth/me`,
         
               {
         
