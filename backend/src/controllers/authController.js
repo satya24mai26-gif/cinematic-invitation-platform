@@ -15,6 +15,8 @@ from '../utils/generateToken.js'
 import sendEmail
 from '../utils/sendEmail.js'
 
+import cookieOptions from '../utils/cookieOptions.js'
+
 
 
 /*
@@ -607,6 +609,12 @@ export async function login(
       return res.json({
     
         success: true,
+
+        otpRequired: false,
+
+        message:
+
+    'Login successful',
     
         data: user
     

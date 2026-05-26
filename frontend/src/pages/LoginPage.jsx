@@ -56,7 +56,7 @@ if (
 
   result.success &&
 
-  result.requiresOTP === false
+  result.otpRequired === false
 
 ) {
   navigate("/");
@@ -90,7 +90,9 @@ if (
         
           return
         
-        } else {
+        }
+        
+        else {
 
         alert(result.message)
 
