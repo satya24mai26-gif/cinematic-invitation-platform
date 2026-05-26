@@ -4,7 +4,7 @@ const cookieOptions = {
   
     secure: false,
   
-    sameSite: 'lax',
+    sameSite: 'none',
   
     maxAge:
   
