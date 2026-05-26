@@ -20,13 +20,7 @@ app.use(
 
   cors({
 
-    origin: [
-
-      'http://localhost:5173',
-
-      'https://cinematic-invitation-platform.vercel.app'
-
-    ],
+    origin: true,
 
     credentials: true
 
