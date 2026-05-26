@@ -18,6 +18,9 @@ import {
   
   }
   from '../context/AuthContext'
+  import { API_URL }
+
+  from '../config'
   
   function VerifyLoginOTPPage() {
   
@@ -53,7 +56,7 @@ import {
         const response =
           await fetch(
   
-            'http://localhost:5000/api/auth/verify-login-otp',
+            `${API_URL}/api/auth/verify-login-otp`,
   
             {
   
@@ -86,7 +89,7 @@ import {
           await refreshUser();
 
           const meResponse = await fetch(
-            "http://localhost:5000/api/auth/me",
+            `${API_URL}/api/auth/me`,
 
             {
               credentials: "include",
@@ -123,7 +126,7 @@ import {
           const response =
             await fetch(
       
-              'http://localhost:5000/api/auth/resend-login-otp',
+              `${API_URL}/api/auth/resend-login-otp`,
       
               {
       

@@ -5,6 +5,8 @@ import getTheme from '../utils/getTheme'
 import { getAllInvitations } from "../services/invitationService";
 import { useAuth }
 from '../context/AuthContext'
+import { API_URL }
+from '../config'
 
 function HomePage() {
   const navigate = useNavigate()
@@ -56,7 +58,7 @@ function HomePage() {
         const response =
           await fetch(
   
-            'http://localhost:5000/api/invitations/my',
+            `${API_URL}/api/invitations/my`,
   
             {
   

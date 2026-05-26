@@ -20,6 +20,10 @@ import {
     useAuth
   
   } from '../context/AuthContext'
+
+  import { API_URL }
+
+from '../config'
   
   function DashboardPage() {
   
@@ -57,7 +61,7 @@ import {
           const response =
             await axios.get(
   
-              `http://localhost:5000/api/invitations/my`,
+              `${API_URL}/api/invitations/my`,
   
               {
   
@@ -127,7 +131,7 @@ import {
         const response =
           await axios.post(
     
-            'http://localhost:5000/api/invitations',
+            `${API_URL}/api/invitations`,
     
             {},
     

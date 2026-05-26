@@ -90,7 +90,7 @@ import { API_URL } from '../config'
       const response =
         await fetch(
   
-          'http://localhost:5000/api/auth/login',
+          `${API_URL}/api/auth/login`,
   
           {
   
@@ -151,7 +151,7 @@ import { API_URL } from '../config'
       const response =
         await fetch(
   
-          'http://localhost:5000/api/auth/register',
+          `${API_URL}/api/auth/register`,
   
           {
   
@@ -195,7 +195,7 @@ import { API_URL } from '../config'
       const response =
         await fetch(
   
-          'http://localhost:5000/api/auth/verify-otp',
+          `${API_URL}/api/auth/verify-otp`,
   
           {
   
@@ -281,7 +281,7 @@ import { API_URL } from '../config'
   
       await fetch(
   
-        'http://localhost:5000/api/auth/logout',
+        `${API_URL}/api/auth/logout`,
   
         {
   

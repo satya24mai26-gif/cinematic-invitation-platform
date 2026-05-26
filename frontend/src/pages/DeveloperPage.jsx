@@ -14,6 +14,10 @@ import {
     useNavigate
   
   } from 'react-router-dom'
+
+  import { API_URL }
+
+from '../config'
   
   function DeveloperPage() {
   
@@ -33,7 +37,7 @@ import {
         const response =
           await axios.get(
   
-            'http://localhost:5000/api/invitations',
+            `${API_URL}/api/invitations`,
   
             {
   
@@ -86,7 +90,7 @@ import {
   
         await axios.delete(
   
-          `http://localhost:5000/api/invitations/${slug}`,
+          `${API_URL}/api/invitations/${slug}`,
   
           {
   

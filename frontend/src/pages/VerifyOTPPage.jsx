@@ -129,7 +129,7 @@ function VerifyOTPPage() {
       const response =
         await fetch(
   
-          'http://localhost:5000/api/auth/resend-otp',
+          `${API_URL}/api/auth/resend-otp`,
   
           {
   

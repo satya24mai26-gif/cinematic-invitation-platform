@@ -1,9 +1,11 @@
 import axios from 'axios'
+import { API_URL }
 
+from '../config'
 
 
 const API =
-  'http://localhost:5000/api/invitations'
+  `${API_URL}/api/invitations`
 
 
 
