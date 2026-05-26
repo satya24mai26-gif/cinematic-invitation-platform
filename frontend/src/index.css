@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  background: rgb(253, 253, 253);
+  color: rgb(172, 66, 25);
+  overflow-x: hidden;
+  font-family: serif;
+}
