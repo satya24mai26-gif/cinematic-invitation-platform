@@ -9,6 +9,8 @@ import {
     useState
   
   } from 'react'
+
+import { API_URL } from '../config'
   
   const AuthContext =
     createContext()
@@ -38,7 +40,7 @@ import {
           const response =
             await fetch(
   
-              'http://localhost:5000/api/auth/me',
+              `${API_URL}/api/auth/me`,
   
               {
   
@@ -244,7 +246,7 @@ import {
         const response =
           await fetch(
   
-            'http://localhost:5000/api/auth/me',
+            `${API_URL}/api/auth/me`,
   
             {
   
