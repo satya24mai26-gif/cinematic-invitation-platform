@@ -2,7 +2,7 @@ const cookieOptions = {
 
     httpOnly: true,
   
-    secure: false,
+    secure: true,
   
     sameSite: 'none',
   

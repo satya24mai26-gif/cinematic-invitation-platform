@@ -5,7 +5,7 @@ from '../config'
 
 
 const API =
-  `${API_URL}/api/invitations`
+  `${API_URL}/api/invitations`;
 
 
 
