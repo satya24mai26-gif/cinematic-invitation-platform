@@ -8,7 +8,6 @@ import normalizeMediaUrl from "../utils/normalizeMediaUrl";
 import { useEffect } from "react";
 import { useParams }  from 'react-router-dom'
 import { getInvitation } from "../services/invitationService";
-import toast from 'react-hot-toast'
 
 const currentTheme = themeConfig.appTheme
 
@@ -174,7 +173,7 @@ function BuilderPage() {
       try {
   
         const invitation =
-          await getInvitation(slug)
+          await getInvitation(slug, { preview: true })
   
         setData(invitation)
   
@@ -188,7 +187,7 @@ function BuilderPage() {
   
     loadInvitation()
   
-  }, [slug])
+  }, [setData, slug])
 
 
 
@@ -940,6 +939,41 @@ function BuilderPage() {
     }
   
   }
+
+  function togglePublished() {
+
+    setData(prev => ({
+
+      ...prev,
+
+      published:
+        !prev.published
+
+    }))
+
+  }
+
+  async function copyShareLink() {
+
+    const shareUrl =
+      `${window.location.origin}/${data.slug}`
+
+    try {
+
+      await navigator.clipboard.writeText(shareUrl)
+
+      alert('Invitation link copied')
+
+    } catch {
+
+      window.prompt(
+        'Copy invitation link',
+        shareUrl
+      )
+
+    }
+
+  }
   let dynamicSectionOrder =
   data?.sectionOrder || []
 
@@ -1052,6 +1086,44 @@ function BuilderPage() {
           <p className="mt-6 text-xl text-orange-700">
             Create your cinematic traditional wedding invitation.
           </p>
+        </div>
+
+        <div className="mt-10 bg-white rounded-[32px] shadow-xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+          <div>
+            <p className="text-sm uppercase tracking-[4px] text-orange-500">
+              Publishing
+            </p>
+
+            <h2 className="mt-2 text-2xl font-bold text-orange-900">
+              {data?.published === false ? 'Private Draft' : 'Public Invitation'}
+            </h2>
+
+            <p className="mt-2 text-zinc-500 break-all">
+              {data?.slug ? `${window.location.origin}/${data.slug}` : 'Save once to create a shareable link.'}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <button
+              type="button"
+              onClick={togglePublished}
+              className={`px-5 py-3 rounded-2xl font-bold ${
+                data?.published === false
+                  ? 'bg-zinc-900 text-white'
+                  : 'bg-green-100 text-green-800'
+              }`}
+            >
+              {data?.published === false ? 'Publish' : 'Unpublish'}
+            </button>
+
+            <button
+              type="button"
+              onClick={copyShareLink}
+              className="px-5 py-3 rounded-2xl bg-orange-100 text-orange-900 font-bold"
+            >
+              Copy Link
+            </button>
+          </div>
         </div>
 
         {/* FORM */}

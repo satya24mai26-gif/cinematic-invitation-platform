@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="src/assets/logo/logo.png" />
+    <title>Sacred Wedding Invitation Suite</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; min-height: 100vh; background-color: #020617; }
+        .serif-title { font-family: 'Playfair Display', serif; }
+        .hidden-section { display: none !important; }
+        
+        @keyframes subtleFloat {
+            0% { transform: translateY(-5px); }
+            50% { transform: translateY(5px); }
+            100% { transform: translateY(-5px); }
+        }
+        .animate-float { animation: subtleFloat 5s ease-in-out infinite; }
+    </style>
+</head>
+<body class="min-h-screen overflow-x-hidden relative">
+
+    <div id="invitation-wrapper" class="min-h-screen relative overflow-hidden transition-all duration-700 opacity-0">
+        
+        <section id="section-hero" class="hidden-section relative overflow-hidden min-h-screen py-32 px-6">
+            <img src="src/assets/decorations/header-toran.png" class="absolute top-0 left-0 w-full z-30 pointer-events-none" onerror="this.style.display='none'">
+            <img src="src/assets/temples/temple-arch.png" class="absolute top-20 left-1/2 -translate-x-1/2 w-[1000px] opacity-10 z-0 pointer-events-none" onerror="this.style.display='none'">
+            <img src="src/assets/decorations/corner.png" class="absolute top-0 left-0 w-[75px] pointer-events-none" onerror="this.style.display='none'">
+            <img src="src/assets/decorations/corner.png" class="absolute top-0 right-0 w-[75px] scale-x-[-1] pointer-events-none" onerror="this.style.display='none'">
+            
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full bg-yellow-200/20 blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto text-center">
+                <img src="src/assets/gods/ganesha.png" class="w-[180px] md:w-[240px] mx-auto drop-shadow-xl" onerror="this.style.display='none'">
+                <p class="tracking-[6px] uppercase text-xs md:text-sm font-semibold text-yellow-600 mt-10">Traditional Wedding Invitation</p>
+                
+                <h1 class="serif-title mt-10 text-5xl md:text-8xl font-bold tracking-wide leading-tight text-amber-950">
+                    <span id="hero-groom-name"></span>
+                    <div class="text-yellow-600 text-4xl md:text-6xl my-4 animate-pulse">❤</div>
+                    <span id="hero-bride-name"></span>
+                </h1>
+                
+                <p class="mt-10 max-w-3xl mx-auto text-lg md:text-2xl leading-relaxed opacity-80">
+                    Together with our families, we request the honor of your presence to celebrate our sacred wedding ceremony.
+                </p>
+
+                <img src="./assets/decorations/floral-divider.png" class="w-[320px] mx-auto mt-14 opacity-80" onerror="this.style.display='none'">
+
+                <div class="mt-16 relative flex justify-center">
+                    <img src="./assets/frames/couple-frame.png" class="w-[380px] md:w-[520px] absolute blur-xl opacity-50" onerror="this.style.display='none'">
+                    <img id="hero-couple-img" src="./assets/couples/couple.png" class="relative z-10 w-[240px] md:w-[320px] object-cover rounded-[30px] shadow-2xl border-4 border-white/80 animate-float">
+                </div>
+
+                <div class="mt-20 space-y-4">
+                    <h2 id="hero-formatted-date" class="serif-title text-3xl md:text-6xl font-bold text-amber-950"></h2>
+                    <p id="hero-time-strip" class="text-xl opacity-70 font-medium"></p>
+                    <p id="hero-venue-text" class="text-lg opacity-60 italic"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-groom" class="hidden-section relative overflow-hidden py-28 px-6 bg-amber-50/20 text-amber-950">
+            <div class="max-w-7xl mx-auto">
+                <img src="./assets/decorations/floral-divider.png" class="w-[280px] mx-auto mb-16 opacity-70" onerror="this.style.display='none'">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-yellow-200/30 blur-3xl rounded-full"></div>
+                            <div class="relative z-10 w-[300px] h-[480px] rounded-[40px] border-4 border-yellow-200 bg-white shadow-xl flex items-center justify-center overflow-hidden">
+                                <img id="groom-profile-img" src="" class="w-[240px] h-[340px] object-cover rounded-2xl shadow-md">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="tracking-[6px] uppercase text-xs md:text-sm font-bold text-orange-700">The Groom</p>
+                        <h2 id="groom-title-name" class="serif-title mt-6 text-4xl md:text-6xl font-bold text-orange-950"></h2>
+                        <p class="mt-6 text-base md:text-lg opacity-80 leading-relaxed">A soul filled with kindness, strength, responsibility, and deep respect for family, tradition, and lifelong companionship.</p>
+                        <div class="mt-10 space-y-6">
+                            <div><h4 class="text-sm uppercase tracking-widest text-orange-700 font-bold">Father</h4><p id="groom-father" class="text-lg font-medium"></p></div>
+                            <div><h4 class="text-sm uppercase tracking-widest text-orange-700 font-bold">Mother</h4><p id="groom-mother" class="text-lg font-medium"></p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-bride" class="hidden-section relative overflow-hidden py-28 px-6 bg-rose-50/20 text-rose-950">
+            <div class="max-w-7xl mx-auto">
+                <div class="flex items-center justify-center mb-16">
+                    <div class="h-[1px] w-20 bg-pink-300"></div><span class="mx-6 text-2xl text-pink-500">✿</span><div class="h-[1px] w-20 bg-pink-300"></div>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <p class="tracking-[6px] uppercase text-xs md:text-sm font-bold text-pink-700">The Bride</p>
+                        <h2 id="bride-title-name" class="serif-title mt-6 text-4xl md:text-6xl font-bold text-pink-950"></h2>
+                        <p class="mt-6 text-base md:text-lg opacity-80 leading-relaxed">A graceful soul whose smile reflects love, warmth, tradition, and the beauty of sacred celebrations.</p>
+                        <div class="mt-10 space-y-6">
+                            <div><h4 class="text-sm uppercase tracking-widest text-pink-700 font-bold">Father</h4><p id="bride-father" class="text-lg font-medium"></p></div>
+                            <div><h4 class="text-sm uppercase tracking-widest text-pink-700 font-bold">Mother</h4><p id="bride-mother" class="text-lg font-medium"></p></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-center">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-pink-200/30 blur-3xl rounded-full"></div>
+                            <div class="relative z-10 w-[300px] h-[480px] rounded-[40px] border-4 border-pink-200 bg-white shadow-xl flex items-center justify-center overflow-hidden">
+                                <img id="bride-profile-img" src="" class="w-[240px] h-[340px] object-cover rounded-2xl shadow-md">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="section-story" class="hidden-section py-24 px-6 text-center max-w-4xl mx-auto">
+            <img src="./assets/decorations/floral-divider.png" class="w-[240px] mx-auto mb-10 opacity-70" onerror="this.style.display='none'">
+            <h2 class="serif-title text-4xl md:text-6xl font-bold mb-8">Our Story</h2>
+            <p id="story-narrative-text" class="text-lg md:text-2xl leading-loose font-light opacity-90 italic"></p>
+            <div class="mt-12 text-5xl animate-bounce">🕊</div>
+        </section>
+
+        <section id="section-events" class="hidden-section py-24 px-6 max-w-5xl mx-auto text-center">
+            <img src="./assets/decorations/floral-divider.png" class="w-[240px] mx-auto mb-10 opacity-70" onerror="this.style.display='none'">
+            <h2 class="serif-title text-4xl md:text-6xl font-bold mb-4">Wedding Events</h2>
+            <p class="opacity-70 text-base md:text-lg max-w-xl mx-auto mb-16">Join us in celebrating these beautiful moments filled with love, blessings, and joyful traditions.</p>
+            <div id="events-timeline-container" class="space-y-8 max-w-4xl mx-auto"></div>
+        </section>
+
+        <section id="section-videos" class="hidden-section py-24 px-6 max-w-6xl mx-auto text-center">
+            <img src="./assets/decorations/floral-divider.png" class="w-[240px] mx-auto mb-10 opacity-70" onerror="this.style.display='none'">
+            <h2 class="serif-title text-4xl md:text-6xl font-bold mb-4">Wedding Films</h2>
+            <p class="opacity-70 text-base mb-16">Watch our beautiful cinematic moments, memories, celebrations, and love story unfold.</p>
+            <div id="videos-grid-matrix" class="grid grid-cols-1 md:grid-cols-2 gap-10"></div>
+        </section>
+
+        <section id="section-gallery" class="hidden-section py-24 px-6 max-w-7xl mx-auto text-center">
+            <img src="./assets/decorations/floral-divider.png" class="w-[240px] mx-auto mb-10 opacity-70" onerror="this.style.display='none'">
+            <h2 class="serif-title text-4xl md:text-6xl font-bold mb-4">Wedding Memories</h2>
+            <p class="opacity-70 text-base mb-16">Beautiful moments captured with love, joy, blessings, and unforgettable memories.</p>
+            <div id="gallery-grid-matrix" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </section>
+
+        <section id="section-liveMemories" class="hidden-section py-24 px-6 max-w-5xl mx-auto text-center">
+            <div id="live-galleries-stack" class="space-y-12"></div>
+        </section>
+    </div>
+
+    <script>
+        const BACKEND_API = "http://localhost:5000"; 
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const slug = urlParams.get('slug');
+        const selectedSide = urlParams.get('side') || 'bride';
+
+        if (slug) executeHydrationPipeline(slug);
+
+        function resolveUrl(path) {
+            if (!path) return "";
+            if (typeof path === 'object') path = path.image || path.url || path.src || JSON.stringify(path);
+            const cleanPath = String(path).trim();
+            if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://') || cleanPath.startsWith('data:')) return cleanPath;
+            return `${BACKEND_API}${cleanPath.startsWith('/') ? '' : '/'}${cleanPath}`;
+        }
+
+        // Native parser mapping for video frames matching your utilities schema definitions
+        function parseVideoSource(type, id) {
+            if (type === 'youtube') return `https://www.youtube.com/embed/${id}?autoplay=0&mute=1`;
+            if (type === 'drive') return `https://drive.google.com/file/d/${id}/preview`;
+            return id;
+        }
+
+        async function executeHydrationPipeline(targetSlug) {
+            try {
+                const response = await fetch(`${BACKEND_API}/api/invitations/${targetSlug}`);
+                if (!response.ok) throw new Error("Data stream interrupted.");
+                const result = await response.json();
+                const data = result.data || result;
+
+                applySideStyles(selectedSide);
+
+                // Rebuild target configuration visibility loops matching fallback strategies
+                let dynamicSectionOrder = data?.sectionOrder || [];
+                if (dynamicSectionOrder.length === 0) {
+                    dynamicSectionOrder = ['hero', 'groom', 'bride', 'story', 'events', 'videos', 'gallery', 'liveMemories'];
+                }
+
+                dynamicSectionOrder.forEach((sectionKey) => {
+                    
+                    // [1] HERO CONTAINER HYDRATION
+                    if (sectionKey === 'hero' && data.couple) {
+                        document.getElementById('hero-groom-name').innerText = data.couple.groom?.name || "";
+                        document.getElementById('hero-bride-name').innerText = data.couple.bride?.name || "";
+                        document.getElementById('hero-formatted-date').innerText = data.wedding?.date || "";
+                        document.getElementById('hero-time-strip').innerText = `⏱ ${data.wedding?.time || ''}`;
+                        document.getElementById('hero-venue-text').innerText = `📍 ${data.wedding?.venue || ''}`;
+                        if (data.landingPage?.coupleImage) document.getElementById('hero-couple-img').src = resolveUrl(data.landingPage.coupleImage);
+                        document.getElementById('section-hero').classList.remove('hidden-section');
+                    }
+
+                    // [2] GROOM CONTAINER HYDRATION
+                    if (sectionKey === 'groom' && data.couple?.groom) {
+                        const g = data.couple.groom;
+                        document.getElementById('groom-title-name').innerText = g.name || "";
+                        document.getElementById('groom-father').innerText = g.father || "";
+                        document.getElementById('groom-mother').innerText = g.mother || "";
+                        if (g.image) document.getElementById('groom-profile-img').src = resolveUrl(g.image);
+                        document.getElementById('section-groom').classList.remove('hidden-section');
+                    }
+
+                    // [3] BRIDE CONTAINER HYDRATION
+                    if (sectionKey === 'bride' && data.couple?.bride) {
+                        const b = data.couple.bride;
+                        document.getElementById('bride-title-name').innerText = b.name || "";
+                        document.getElementById('bride-father').innerText = b.father || "";
+                        document.getElementById('bride-mother').innerText = b.mother || "";
+                        if (b.image) document.getElementById('bride-profile-img').src = resolveUrl(b.image);
+                        document.getElementById('section-bride').classList.remove('hidden-section');
+                    }
+
+                    // [4] STORY CONTAINER HYDRATION
+                    if (sectionKey === 'story' && data.story) {
+                        document.getElementById('story-narrative-text').innerText = data.story;
+                        document.getElementById('section-story').classList.remove('hidden-section');
+                    }
+
+                    // [5] EVENTS TIMELINE MODULE HYDRATION (Filtering logic included)
+                    if (sectionKey === 'events' && data.events) {
+                        const filteredEvents = data.events.filter(e => e.side === 'common' || e.side === selectedSide);
+                        if (filteredEvents.length > 0) {
+                            const container = document.getElementById('events-timeline-container');
+                            container.innerHTML = filteredEvents.map((event, idx) => `
+                                <div class="bg-white rounded-[32px] shadow-lg border border-yellow-500/10 p-8 text-left transition-transform hover:scale-[1.01]">
+                                    <div class="flex flex-col md:flex-row md:items-center gap-6">
+                                        <div class="w-14 h-14 rounded-full bg-amber-500/10 text-amber-600 flex items-center justify-center font-bold text-xl">${idx + 1}</div>
+                                        <div class="flex-1">
+                                            <h3 class="text-2xl font-bold text-amber-950">${event.title || event.name || 'Ceremony'}</h3>
+                                            <div class="mt-3 grid grid-cols-1 md:grid-cols-3 gap-2 text-sm text-zinc-600 font-medium">
+                                                <p>📅 ${event.date || ''}</p><p>⏰ ${event.time || ''}</p><p>📍 ${event.location || event.venue || ''}</p>
+                                            </div>
+                                        </div>
+                                        ${event.mapLink ? `<a href="${event.mapLink}" target="_blank" class="bg-amber-600 hover:bg-amber-700 text-white text-xs px-5 py-2.5 rounded-full font-bold transition-all text-center">View Location</a>` : ''}
+                                    </div>
+                                </div>
+                            `).join('');
+                            document.getElementById('section-events').classList.remove('hidden-section');
+                        }
+                    }
+
+                    // [6] CINEMATIC VIDEOS INTERFACE MATRIX
+                    if (sectionKey === 'videos' && data.videos) {
+                        const targetVideos = data.videos.filter(v => v.enabled !== false);
+                        if (targetVideos.length > 0) {
+                            const container = document.getElementById('videos-grid-matrix');
+                            container.innerHTML = targetVideos.map(video => `
+                                <div class="bg-white rounded-[32px] shadow-lg overflow-hidden border border-yellow-500/5 text-left">
+                                    <div class="relative aspect-video bg-black">
+                                        ${(video.sourceType === 'upload' || video.sourceType === 'github') 
+                                            ? `<video src="${resolveUrl(video.sourceId)}" controls muted class="w-full h-full object-cover"></video>`
+                                            : `<iframe src="${parseVideoSource(video.sourceType, video.sourceId)}" class="absolute inset-0 w-full h-full border-0" allow="fullscreen"></iframe>`
+                                        }
+                                    </div>
+                                    <div class="p-6"><h3 class="text-xl font-bold text-slate-900">${video.title || 'Wedding Film'}</h3></div>
+                                </div>
+                            `).join('');
+                            document.getElementById('section-videos').classList.remove('hidden-section');
+                        }
+                    }
+
+                    // [7] IMAGES ARCHIVE MATRIX HYDRATION
+                    if (sectionKey === 'gallery' && data.gallery) {
+                        const verifiedImages = data.gallery.filter(img => img.enabled !== false);
+                        if (verifiedImages.length > 0) {
+                            const container = document.getElementById('gallery-grid-matrix');
+                            container.innerHTML = verifiedImages.map(img => `
+                                <div class="relative rounded-[32px] overflow-hidden shadow-md border-4 border-white bg-white group hover:shadow-xl transition-all">
+                                    <img src="${resolveUrl(img)}" class="w-full h-[360px] object-cover transition-transform duration-500 group-hover:scale-102" loading="lazy">
+                                    <div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-sm text-zinc-800 font-semibold text-xs px-4 py-1.5 rounded-full shadow-sm">Wedding Memory</div>
+                                </div>
+                            `).join('');
+                            document.getElementById('section-gallery').classList.remove('hidden-section');
+                        }
+                    }
+
+                    // [8] LIVE QR UPDATING SYSTEM HUB
+                    if (sectionKey === 'liveMemories' && data.liveGalleries) {
+                        const activeGalleries = data.liveGalleries.filter(g => g.enabled !== false);
+                        if (activeGalleries.length > 0) {
+                            const container = document.getElementById('live-galleries-stack');
+                            container.innerHTML = activeGalleries.map(g => `
+                                <a href="${g.folderUrl}" target="_blank" class="block bg-white/60 border border-white p-8 rounded-[40px] shadow-xl hover:shadow-2xl transition-all max-w-4xl mx-auto text-left">
+                                    <div class="flex flex-col md:flex-row items-center gap-10">
+                                        <div class="flex-1">
+                                            <div class="flex items-center gap-2 text-xs uppercase tracking-widest font-bold text-red-600 mb-4">
+                                                <div class="w-2 h-2 rounded-full bg-red-600 animate-pulse"></div>Memories Updating
+                                            </div>
+                                            <h3 class="text-3xl font-bold text-slate-900">${g.title}</h3>
+                                            <p class="mt-4 text-zinc-600 text-sm leading-relaxed">${g.description || ''}</p>
+                                        </div>
+                                        <div class="bg-white p-4 rounded-2xl border shadow-sm flex flex-col items-center">
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(g.folderUrl)}" class="w-[150px] h-[150px]">
+                                            <p class="mt-3 font-semibold text-xs text-zinc-500">Scan to Open Gallery</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            `).join('');
+                            document.getElementById('section-liveMemories').classList.remove('hidden-section');
+                        }
+                    }
+                });
+
+                const wrapper = document.getElementById('invitation-wrapper');
+                wrapper.classList.remove('opacity-0');
+                wrapper.classList.add('opacity-100');
+
+            } catch (err) {
+                console.error("Hydration Critical Failure Stack Trace:", err);
+            }
+        }
+
+        function applySideStyles(side) {
+            const wrapper = document.getElementById('invitation-wrapper');
+            if (side === 'groom') {
+                wrapper.className += " bg-gradient-to-b from-[#fefaf4] via-amber-50/40 to-[#ffffff] text-amber-950";
+            } else {
+                wrapper.className += " bg-gradient-to-b from-[#fff5f6] via-rose-50/30 to-[#ffffff] text-rose-950";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -2,8 +2,6 @@ import { motion } from 'framer-motion'
 import { useInvitation } from '../../context/InvitationContext'
 import getTheme from '../../utils/getTheme'
 
-import {randomBrideImage} from '../../utils/randomImages'
-
 function BrideSection() {
   const { data } = useInvitation()
   const bride = data?.couple?.bride

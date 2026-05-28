@@ -42,10 +42,7 @@ function LandingPage() {
     
       loadInvitation()
     
-    }, [slug])
-
-  const { bride, groom } =
-    data.couple || ''
+    }, [setData, slug])
 
   function handleSideSelect(side) {
 
@@ -54,7 +51,35 @@ function LandingPage() {
     navigate( `/${slug}/divine-intro?side=${side}`)
 
   }
-console.log(data)
+
+  if (data?.published === false) {
+
+    return (
+
+      <div className="min-h-screen bg-[#fff8f0] flex items-center justify-center px-6 text-center">
+
+        <div>
+
+          <p className="text-sm uppercase tracking-[5px] text-orange-600">
+            Private Draft
+          </p>
+
+          <h1 className="mt-4 text-4xl md:text-6xl font-bold text-orange-950">
+            This invitation is not published yet.
+          </h1>
+
+          <p className="mt-5 text-lg text-zinc-600">
+            Please check back after the host publishes it.
+          </p>
+
+        </div>
+
+      </div>
+
+    )
+
+  }
+
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center px-6">
       {/* BACKGROUND */}

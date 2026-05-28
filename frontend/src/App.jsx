@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import HomePage from './pages/HomePage'
 import BuilderPage from './pages/BuilderPage'
 import InvitationPage from './pages/InvitationPage'
-import SideSelectionPage from './pages/SideSelectionPage'
 import BuilderPreviewPage from './pages/BuilderPreviewPage'
 import LandingPage from './pages/LandingPage'
 import DivineIntro from './pages/DivineIntro'
@@ -74,7 +73,7 @@ function App() {
           path="/:slug/builder-preview"
           element={
             <AdminRoute>
-              <DeveloperPage />
+              <BuilderPreviewPage />
             </AdminRoute>
           }
         />

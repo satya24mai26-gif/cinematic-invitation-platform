@@ -469,7 +469,8 @@ if (!invitation) {
       message:
         'OTP verified',
 
-      slug
+      slug:
+        invitation.slug
 
     })
 

@@ -71,8 +71,6 @@ from '../config'
   
             )
 
-            console.log("vasavi satya", response.data)
-  
             setInvitation(response.data.data)
   
         } catch (error) {
@@ -169,6 +167,44 @@ from '../config'
       }
     
     }
+    async function copyInvitationLink() {
+
+      if (!invitation?.slug) return
+
+      const shareUrl =
+        `${window.location.origin}/${invitation.slug}`
+
+      try {
+
+        await navigator.clipboard.writeText(shareUrl)
+
+        alert('Invitation link copied')
+
+      } catch {
+
+        window.prompt(
+          'Copy invitation link',
+          shareUrl
+        )
+
+      }
+
+    }
+
+    if (loading) {
+
+      return (
+
+        <div className="min-h-screen bg-black text-white flex items-center justify-center">
+
+          Loading dashboard...
+
+        </div>
+
+      )
+
+    }
+
     return (
   
       <div className="min-h-screen bg-black text-white p-10">
@@ -314,6 +350,34 @@ from '../config'
                   Preview
   
                 </button>
+
+                <button
+  
+                  onClick={copyInvitationLink}
+  
+                  className="
+                  px-6
+                  py-3
+                  bg-green-600
+                  rounded-2xl
+                "
+  
+                >
+  
+                  Copy Link
+  
+                </button>
+
+                <span className={`
+                  px-4
+                  py-3
+                  rounded-2xl
+                  text-sm
+                  font-bold
+                  ${invitation.published === false ? 'bg-zinc-700 text-zinc-200' : 'bg-green-900 text-green-200'}
+                `}>
+                  {invitation.published === false ? 'Draft' : 'Published'}
+                </span>
   
               </div>
   

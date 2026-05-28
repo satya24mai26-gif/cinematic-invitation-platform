@@ -10,7 +10,8 @@ const API =
 
 
 export async function getInvitation(
-  slug
+  slug,
+  options = {}
 ) {
 
   const response =
@@ -19,6 +20,9 @@ export async function getInvitation(
       `${API}/${slug}`,
 
       {
+        params: options.preview
+          ? { preview: 'true' }
+          : undefined,
     
         withCredentials: true
     

@@ -37,9 +37,24 @@ router.get(
 
   '/',
 
+  authMiddleware,
+
   async (req, res) => {
 
     try {
+
+      if (req.user.role !== 'admin') {
+
+        return res.status(403).json({
+
+          success: false,
+
+          message:
+            'Admin access required'
+
+        })
+
+      }
 
       const invitations =
         await InvitationModel.find()

@@ -26,9 +26,26 @@ export async function createInvitation(
       title: "My Invitation",
 
       couple: {
-        groom: "",
+        groom: {
+          name: "",
+          father: "",
+          mother: "",
+          image: ""
+        },
 
-        bride: "",
+        bride: {
+          name: "",
+          father: "",
+          mother: "",
+          image: ""
+        },
+      },
+
+      wedding: {
+        date: '',
+        time: '',
+        venue: '',
+        mapLink: ''
       },
 
       gallery: [],
@@ -37,14 +54,41 @@ export async function createInvitation(
 
       story: '',
 
-      blessings: [],
+      videos: [],
 
-      family: {
-        groomSide: [],
+      liveGalleries: [],
 
-        brideSide: [],
+      sectionOrder: [
+        'hero',
+        'story',
+        'bride',
+        'groom',
+        'family',
+        'events',
+        'gallery',
+        'videos',
+        'liveMemories',
+        'saveTheDate'
+      ],
+
+      sections: {
+        hero: true,
+        story: true,
+        bride: true,
+        groom: true,
+        family: true,
+        events: true,
+        gallery: true,
+        videos: true,
+        liveMemories: true,
+        saveTheDate: true
       },
     });
+
+    if (!req.user.invitation) {
+      req.user.invitation = invitation._id;
+      await req.user.save();
+    }
 
     res.status(201).json({
       success: true,
@@ -244,6 +288,19 @@ export async function getAllInvitations(
 
   try {
 
+    if (req.user.role !== 'admin') {
+
+      return res.status(403).json({
+
+        success: false,
+
+        message:
+          'Admin access required'
+
+      })
+
+    }
+
     const invitations =
       await InvitationModel.find()
       .sort({ updatedAt: -1 })
@@ -324,7 +381,13 @@ if (!invitation.owner) {
 OWNERSHIP CHECK
 */
 
+const isAdmin =
+
+  req.user.role === 'admin'
+
 if (
+
+  !isAdmin &&
 
   invitation.owner.toString()
 

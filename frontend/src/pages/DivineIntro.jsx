@@ -8,8 +8,6 @@ import { useParams, useSearchParams } from "react-router-dom"
 
 import { useInvitation } from '../context/InvitationContext'
 
-import { getInvitation } from "../services/invitationService";
-
 import { divineTheme } from '../data/themeConfig'
 
 import ganesha from '../assets/gods/ganesha.png'
@@ -18,8 +16,8 @@ function DivineIntro() {
 
   const { slug } = useParams();
   const [searchParams] = useSearchParams();
-  const { data, setData } = useInvitation();
-  let {selectedSide} = useInvitation();
+  const { data, selectedSide: contextSide } = useInvitation();
+  let selectedSide = contextSide;
   selectedSide = searchParams.get('side') ?? selectedSide
 
   const navigate = useNavigate()
@@ -29,13 +27,13 @@ function DivineIntro() {
   
       navigate(`/${slug}/invitation?side=${selectedSide}`)
   
-    }, 4000)
+    }, data?.godIntro?.duration || 4000)
   
     return () => clearTimeout(timer)
   
-  }, [])
+  }, [data?.godIntro?.duration, navigate, selectedSide, slug])
   
-  const divineIntro = divineTheme[data.godIntro.god]
+  const divineIntro = divineTheme[data?.godIntro?.god] || divineTheme.ganesha
 
   return (
     <div className="fixed inset-0 z-[999] flex items-center justify-center overflow-hidden"

@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import { useInvitation } from '../../context/InvitationContext'
 
@@ -21,7 +21,7 @@ function FloatingNavigation() {
   const [showNav, setShowNav] =
     useState(false)
 
-  const navItems = [
+  const navItems = useMemo(() => [
 
     {
       id: 'story',
@@ -70,7 +70,7 @@ function FloatingNavigation() {
       label: 'Save',
       icon: '❤️'
     }
-  ]
+  ], [])
 
   useEffect(() => {
 
@@ -117,7 +117,7 @@ function FloatingNavigation() {
 
     return () => observer.disconnect()
 
-  }, [])
+  }, [navItems])
 
   useEffect(() => {
 

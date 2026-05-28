@@ -1,3 +1,8 @@
+import { useEffect } from 'react'
+import { Outlet, useParams } from 'react-router-dom'
+import { useInvitation } from '../context/InvitationContext'
+import { getInvitation } from '../services/invitationService'
+
 function InvitationLayout() {
 
     const { slug } =
@@ -19,8 +24,10 @@ function InvitationLayout() {
   
       loadInvitation()
   
-    }, [slug])
+    }, [setData, slug])
   
     return <Outlet />
   
   }
+
+export default InvitationLayout

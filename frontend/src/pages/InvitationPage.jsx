@@ -35,7 +35,6 @@ function InvitationPage() {
   
         const invitation =
           await getInvitation(slug)
-        console.log(slug, invitation)
         setData(invitation)
   
       } catch (error) {
@@ -48,7 +47,7 @@ function InvitationPage() {
   
     loadInvitation()
   
-  }, [slug])
+  }, [setData, slug])
 
   let dynamicSectionOrder =
   data?.sectionOrder || []
@@ -135,6 +134,30 @@ function InvitationPage() {
   
     }
   
+  }
+
+  if (data?.published === false) {
+
+    return (
+
+      <div className="min-h-screen bg-[#fff8f0] flex items-center justify-center px-6 text-center">
+
+        <div>
+
+          <p className="text-sm uppercase tracking-[5px] text-orange-600">
+            Private Draft
+          </p>
+
+          <h1 className="mt-4 text-4xl md:text-6xl font-bold text-orange-950">
+            This invitation is not published yet.
+          </h1>
+
+        </div>
+
+      </div>
+
+    )
+
   }
 
   return (
