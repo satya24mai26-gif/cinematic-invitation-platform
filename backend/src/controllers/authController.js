@@ -442,23 +442,7 @@ if (!invitation) {
 
       token,
 
-      {
-
-        httpOnly: true,
-
-        secure:
-          process.env.NODE_ENV
-          === 'production',
-
-        sameSite: 'lax',
-
-        maxAge:
-          2 *
-          60 *
-          60 *
-          1000
-
-      }
+      cookieOptions
 
     )
 
@@ -820,23 +804,7 @@ console.log(
     
       token,
     
-      {
-    
-        httpOnly: true,
-    
-        secure:
-          process.env.NODE_ENV
-          === 'production',
-    
-        sameSite: 'lax',
-    
-        maxAge:
-          2 *
-          60 *
-          60 *
-          1000
-    
-      }
+      cookieOptions
     
     )
     
