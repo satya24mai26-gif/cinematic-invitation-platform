@@ -20,7 +20,7 @@ const transporter =
 
   })
 
-const sendEmail = async (
+const sendEmail1 = async (
 
   to,
 
@@ -42,6 +42,10 @@ const sendEmail = async (
 
   })
 
+}
+
+const sendEmail = async () => {
+    console.log("Email skipped");
 }
 
 export default sendEmail
