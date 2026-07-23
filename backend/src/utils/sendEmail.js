@@ -44,6 +44,8 @@ const sendEmail = async (
 ) => {
 
   await transporter.verify();
+
+  alert("SMTP CONNECTED")
   console.log("SMTP connected successfully");
 
   await transporter.sendMail({
