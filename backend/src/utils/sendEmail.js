@@ -20,7 +20,7 @@ const transporter =
 
   })
 
-const sendEmail1 = async (
+const sendEmail = async (
 
   to,
 
@@ -44,7 +44,7 @@ const sendEmail1 = async (
 
 }
 
-const sendEmail = async () => {
+const sendEmail1 = async () => {
     console.log("Email skipped");
 }
 
