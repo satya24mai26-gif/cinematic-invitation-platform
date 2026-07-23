@@ -5,7 +5,7 @@ from 'dotenv'
 
 dotenv.config()
 
-const transporter =
+const transporter1 =
   nodemailer.createTransport({
 
     service: 'gmail',
@@ -20,6 +20,19 @@ const transporter =
 
   })
 
+const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    },
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 10000,
+});
+
 const sendEmail = async (
 
   to,
@@ -29,6 +42,9 @@ const sendEmail = async (
   html
 
 ) => {
+
+  await transporter.verify();
+  console.log("SMTP connected successfully");
 
   await transporter.sendMail({
 
@@ -42,10 +58,6 @@ const sendEmail = async (
 
   })
 
-}
-
-const sendEmail1 = async () => {
-    console.log("Email skipped");
 }
 
 export default sendEmail
