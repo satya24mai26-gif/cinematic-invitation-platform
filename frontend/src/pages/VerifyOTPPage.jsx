@@ -45,7 +45,7 @@ function VerifyOTPPage() {
 
     
 
-  async function handleVerify(
+  async function handleVerify1(
 
     e
 
@@ -121,6 +121,40 @@ function VerifyOTPPage() {
     }
 
   }
+
+  async function handleVerify(e) {
+    e.preventDefault()
+
+    try {
+      setLoading(true)
+
+      const result = await verifyOTP(email, otp)
+
+      if (result.success) {
+        await refreshUser()
+        
+        const meResponse = await fetch(`${API_URL}/api/auth/me`, {
+          credentials: 'include'
+        })
+        const meResult = await meResponse.json()
+        
+        if (meResult.data.role === 'admin') {
+          navigate('/developer')
+        } else {
+          navigate('/')
+        }
+        // Do NOT set loading to false here. Keep the button disabled while navigating!
+      } else {
+        alert(result.message)
+        setLoading(false) // Only re-enable the button if verification failed
+      }
+    } catch (error) {
+      console.log(error)
+      alert('OTP verification failed')
+      setLoading(false) // Only re-enable on error
+    }
+  }
+  
 
   async function resendOTP() {
 
