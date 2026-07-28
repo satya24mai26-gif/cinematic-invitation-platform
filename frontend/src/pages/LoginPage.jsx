@@ -15,8 +15,7 @@ function LoginPage() {
   const navigate =
     useNavigate()
 
-  const { login } =
-    useAuth()
+  const { login, refreshUser } = useAuth()
 
   const [email, setEmail] =
     useState('')
@@ -27,93 +26,31 @@ function LoginPage() {
   const [loading, setLoading] =
     useState(false)
 
-  async function handleLogin(
-
-    e
-
-  ) {
-
+  async function handleLogin(e) {
     e.preventDefault()
-
     try {
-
       setLoading(true)
+      const result = await login(email, password)
 
-      const result =
-        await login(
-
-          email,
-
-          password
-
-        )
-
-        /*
-ADMIN
-*/
-
-if (
-
-  result.success &&
-
-  result.otpRequired === false
-
-) {
-  navigate("/");
-
-  return;
-}
-
-        if (
-
-          result.success &&
-        
-          result.otpRequired
-        
-        ) {
-        
-          navigate(
-        
-            '/verify-login-otp',
-        
-            {
-        
-              state: {
-        
-                email
-        
-              }
-        
-            }
-        
-          )
-        
-          return
-        
-        }
-        
-        else {
-
-        alert(result.message)
-
+      if (result.success && result.otpRequired === false) {
+        await refreshUser(); 
+        navigate("/");
+        return;
       }
 
+      if (result.success && result.otpRequired) {
+        navigate('/verify-login-otp', { state: { email } })
+        return
+      } else {
+        alert(result.message)
+        setLoading(false)
+      }
     } catch (error) {
-
       console.log(error)
-
-      alert(
-        'Login failed'
-      )
-
-    } finally {
-
+      alert('Login failed')
       setLoading(false)
-
-    }
-
+    } 
   }
-
   return (
 
     <div className="min-h-screen flex items-center justify-center bg-black px-6">
