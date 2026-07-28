@@ -1,14 +1,12 @@
 {
-    "rewrites": [
-  
-      {
-  
-        "source": "/(.*)",
-  
-        "destination": "/index.html"
-  
-      }
-  
-    ]
-  
-  }
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://cinematic-invitation-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
