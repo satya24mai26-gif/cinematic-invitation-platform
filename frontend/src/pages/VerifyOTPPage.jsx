@@ -248,40 +248,21 @@ function VerifyOTPPage() {
           />
 
           <button
-
             type="submit"
-
             disabled={loading}
-
             className="w-full py-4 rounded-2xl bg-yellow-500 text-black font-bold"
-
           >
-
-            {
-
-              loading
-
-              ?
-
-              'Verifying...'
-
-              :
-
-              'Verify OTP'
-
-            }
-
+            {loading ? 'Verifying...' : 'Verify OTP'}
           </button>
 
           <button
-
-  onClick={resendOTP}
-
->
-
-  Resend OTP
-
-</button>
+            type="button" // <--- CRITICAL FIX: Stops the form from submitting
+            onClick={resendOTP}
+            disabled={loading}
+            className="w-full text-zinc-400 hover:text-white transition-colors"
+          >
+            Resend OTP
+          </button>
 
         </div>
 
