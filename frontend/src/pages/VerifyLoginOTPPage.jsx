@@ -40,6 +40,45 @@ function VerifyLoginOTPPage() {
         } else {
           navigate("/");
         }
+        // Success! The page will navigate. Leave loading as true.
+      } else {
+        alert(result.message);
+        setLoading(false); // Verification failed, allow them to click again
+      }
+    } catch (error) {
+      console.log(error);
+      setLoading(false); // API crashed, allow them to click again
+    } 
+        }
+
+  async function handleVerify1() {
+    try {
+      setLoading(true);
+      const response = await fetch(`${API_URL}/api/auth/verify-login-otp`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        body: JSON.stringify({ email, otp })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        await refreshUser();
+
+        const meResponse = await fetch(`${API_URL}/api/auth/me`, {
+          credentials: "include",
+        });
+
+        const meResult = await meResponse.json();
+
+        if (meResult.data.role === "admin") {
+          navigate("/developer");
+        } else {
+          navigate("/");
+        }
       } else {
         alert(result.message);
       }
